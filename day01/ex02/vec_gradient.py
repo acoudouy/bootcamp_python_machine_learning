@@ -4,7 +4,6 @@ def gradient(x,y,theta):
     if isinstance(y, np.ndarray) == 1 and isinstance(x, np.ndarray) == 1 and isinstance(theta, np.ndarray) == 1:
         if len(x) == len(y):
             if len(x[0]) == len(theta):
-                x1 = np.delete(x,0,1)
                 res = np.dot(x.T, (x.dot(theta) - y)) / len(x)
                 return (res)
             else:
