@@ -98,10 +98,11 @@ class MyLinearRegression():
     def normalequation_(self, X, Y):
         if isinstance(X, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
             if len(X) == len(Y):
-                self.theta = sum(np.linalg.inv(np.dot(X.T, X)) * (np.dot(X.T, Y)))
-                new = np.full(1,1) #
-                self.theta = np.hstack([new, self.theta]) #
-                print(self.theta) #
+                a = np.linalg.inv(np.dot(X.T, X))
+                b = np.dot(X.T,Y)
+                self.theta = np.dot(a,b)
+                new = np.full((1,1),1)
+                self.theta = np.vstack([new, self.theta])
                 return (self.theta)
             else:
                 print("normal equation: X and Y do not have the same size")

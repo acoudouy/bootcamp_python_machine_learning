@@ -59,7 +59,6 @@ plt.show()
 '''
 
 #For Multilinear Regression
-print(data)
 X = np.array(data[['Age','Thrust_power','Terameters']])
 Y = np.array(data[['Sell_price']])
 theta = np.array([[1.0],[-10.],[6.0],[-2.0]])
