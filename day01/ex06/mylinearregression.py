@@ -18,9 +18,9 @@ class MyLinearRegression():
                 X = np.hstack([new, X])
                 return (X.dot(self.theta))
             else:
-                print("\nx's columns is not theta's line - 1. \n")
+                print("predict : x's columns is not theta's line - 1. \n")
         else:
-            print("theta or X is not a np.ndarray. Incompatible.\n")
+            print("predict : theta or X is not a np.ndarray. Incompatible.\n")
 
 
     def cost_elem_(self, X, Y):
@@ -48,7 +48,7 @@ class MyLinearRegression():
             print("Incompatibily in X, Y and theta's dimensions.\n")
 
     def gradient(self, x, y):
-        if isinstance(y, np.ndarray) == 1 and isinstance(x, np.ndarray) == 1 and isinstance(self.theta, np.ndarray) == 1:
+        if isinstance(y, np.ndarray) == 1 and isinstance(x, np.ndarray) == 1:
             if len(x) == len(y):
                 if len(x[0]) == len(self.theta):
                     x1 = np.delete(x,0,1)
@@ -63,7 +63,7 @@ class MyLinearRegression():
 
 
     def fit_(self, X, Y, alpha, n_cycle):
-        if isinstance(X, np.ndarray) == 1 and isinstance(self.theta, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
+        if isinstance(X, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
             if len(X[0]) == len(self.theta) - 1 and len(X) == len(Y):
                 if isinstance(alpha, float) == 1 and isinstance(n_cycle, int) == 1:
                     new = np.full((len(X),1),1.)
@@ -88,9 +88,22 @@ class MyLinearRegression():
                     res = res / (i + 1)
                     return (res)
                 else:
-                    print("2 args are not only composed with one column")
+                    print("mse: 2 args are not only composed with one column")
             else:
-                print("2 args do not have the same size")
+                print("mse: 2 args do not have the same size")
         else:
-            print("2 args are not np.ndarray")
+            print("mse: 2 args are not np.ndarray")
         return (None)
+
+    def normalequation_(self, X, Y):
+        if isinstance(X, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
+            if len(X) == len(Y):
+                self.theta = sum(np.linalg.inv(np.dot(X.T, X)) * (np.dot(X.T, Y)))
+                new = np.full(1,1) #
+                self.theta = np.hstack([new, self.theta]) #
+                print(self.theta) #
+                return (self.theta)
+            else:
+                print("normal equation: X and Y do not have the same size")
+        else:
+            print("normal equation: X and Y are not np.ndarray")
