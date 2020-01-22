@@ -7,11 +7,7 @@ class LogisticRegressionBatchGd:
     
     def __sigmoid_(self, x):
         if isinstance(x, (list, np.ndarray)) == 1:
-#            X = x
-#            for i in range(len(x)):
-#                X[i] = 1 / (1 + np.exp(-x[i]))
-            X = 1 / (1 + np.exp(-x))
-            return (X)
+            return (1 / (1 + np.exp(-x)))
         elif isinstance(x, (int, float)) == 1:
             return(1 / (1 + math.exp(-x)))
         else:
@@ -38,7 +34,6 @@ class LogisticRegressionBatchGd:
         """ Comput the gradient. """
         if isinstance(x, np.ndarray) == 1 and isinstance(y_true, np.ndarray) == 1 and isinstance(y_pred, np.ndarray) == 1:
             res = np.dot((y_pred.T - y_true), x)
-           # print(y_pred.T)
             return (res)
         elif isinstance(x, np.ndarray) == 1 and isinstance(y_true, (int, float)) == 1 and isinstance(y_pred, (int, float)) == 1:
             res = np.dot((y_pred - y_true), x)
@@ -55,6 +50,7 @@ class LogisticRegressionBatchGd:
         self.learning_rate = learning_rate # can be 'constant' or 'invscaling'
         self.theta = np.full(82, 1)  # compare a avant theta a des lignes et colonnes
         self.loss_list = []
+        self.list_theta = []
 
         #Code here = a list of loss for each epochs
 
@@ -63,10 +59,9 @@ class LogisticRegressionBatchGd:
         if isinstance(self.theta, np.ndarray) == 1 and isinstance(x_train, np.ndarray) == 1:
             new = np.full((len(x_train),1),1.)
             x_train = np.hstack([new, x_train])
-            if len(x_train[0]) == len(self.theta):
-                return (x_train.dot(self.theta))
-            else:
-                print("predict: x's columns is not theta's line. \n")
+            y_pred = self.__sigmoid_(x_train.dot(self.theta))
+            y_pred = np.where(y_pred > 0.5, 1, 0)
+            return(y_pred)
         else:
             print("score: theta or X is not a np.ndarray. Incompatible.\n")
 
@@ -80,10 +75,11 @@ class LogisticRegressionBatchGd:
                     x_train = np.hstack([new, x_train])
                     for i in range(self.max_iter):
                         y_pred = self.__sigmoid_(x_train.dot(self.theta))
+                        y_pred = np.where(y_pred > 0.5, 1, 0)
                         self.theta = self.theta - self.alpha * self.__vec_log_gradient_(x_train,y_train, y_pred)
                         loss = self.__vec_log_loss_(y_train, y_pred, len(y_pred))
                         self.loss_list.append(loss)
-                        if i % 150 == 0:
+                        if i % 150  == 0:
                             print("epoch " + str(i) + " : loss " + str(loss))
                         
                     return (self.theta)
@@ -97,7 +93,8 @@ class LogisticRegressionBatchGd:
 
     def score(self, x_train, y_train):
         """ Returns the mean accuracy on the given test data and labels. """
-        return (mean(self.loss_list))
+        y_pred = model.predict(x_train)
+        return ((y_pred == y_train).mean())
 
 
 
@@ -110,42 +107,13 @@ df_test = pd.read_csv('../resources/test_dataset_clean.csv', delimiter=',', head
 x_test, y_test = np.array(df_test.iloc[:, 1:82]), np.array(df_test.iloc[:, 0])
 
 # We set our model with our hyperparameters : alpha, max_iter, verbose and learning_rate
-model = LogisticRegressionBatchGd(alpha=5e-5, max_iter=3000, verbose=True, learning_rate='constant')
+model = LogisticRegressionBatchGd(alpha=0.01, max_iter=1500, verbose=True, learning_rate='constant')
 
 # We fit our model to our dataset and display the score for the train and test datasets
 model.fit(x_train, y_train) # mise a jour des theta
 print(f'Score on train dataset : {model.score(x_train, y_train)}')
 y_pred = model.predict(x_test)
 print(f'Score on test dataset  : {(y_pred == y_test).mean()}')
-
-
-
-# epoch 0     : loss 2.711028065632692
-# epoch 150   : loss 1.760555094793668
-# epoch 300   : loss 1.165023422947427
-# epoch 450   : loss 0.830808383847448
-# epoch 600   : loss 0.652110347325305
-# epoch 750   : loss 0.555867078788320
-# epoch 900   : loss 0.501596689945403
-# epoch 1050  : loss 0.469145216528238
-# epoch 1200  : loss 0.448682476966280
-# epoch 1350  : loss 0.435197719530431
-# epoch 1500  : loss 0.425934034947101
-# Score on train dataset : 0.7591904425539756
-# Score on test dataset  : 0.7637737239727289
-
-# This is an example with verbose set to True, you could choose to display your loss at the epochs you want.
-# Here I choose to only display 11 rows no matter how many epochs I had.
-# Your score should be pretty close to mine.
-# Your loss may be quite different weither you choose different hyperparameters, if you add an intercept to your x_train
-# or if you shuffle your x_train at each epochs (this introduce stochasticity !) etc...
-# You might not get a score as good as sklearn.linear_model.LogisticRegression because it uses a different algorithm and
-# more optimized parameters that would require more time to implement.
-
-
-
-
-
 
 
 
