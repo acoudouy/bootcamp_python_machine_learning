@@ -1,6 +1,6 @@
 import numpy as np
 
-class MyLinearRegression():
+class MyLR():
     """
     Description:
     My personnal linear regression class to fit like a boss.
