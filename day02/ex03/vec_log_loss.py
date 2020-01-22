@@ -5,17 +5,10 @@ from sigmoid import sigmoid_
 def vec_log_loss_(y_true, y_pred, m, eps=1e-15):
     if isinstance(y_true, np.ndarray) == 1 and isinstance(y_pred, np.ndarray) == 1:
         if len(y_true) == len(y_pred) and m == len(y_true):
-            somme = - (1/m) * (np.dot(y_true, math.log(y_pred + eps)))
-            a = (np.dot((1 - y_true),math.log(1 - y_pred + eps)))
+            a = (np.dot(y_true, np.log(y_pred + eps)))
+            b = (np.dot((1 - y_true), np.log(1 - y_pred + eps)))
+            J = - (1 / m) * (a + b)
             return (J)
-        
-
-
-
-
-
-
-
         else:
             print("vec_log_loss: y_true and y_red are not the same size")
     elif isinstance (y_true, (int, float)) == 1 and isinstance(y_pred, (int, float)) == 1:
@@ -44,10 +37,8 @@ print(vec_log_loss_(y_true, y_pred, m))
 
 print("Test n.3")
 x_new = np.arange(1, 13).reshape((3, 4))
-print(x_new)
 y_true = np.array([1, 0, 1])
 theta = np.array([-1.5, 2.3, 1.4, 0.7])
 y_pred = sigmoid_(np.dot(x_new, theta))
-print(y_pred)
 m = len(y_true)
 print(vec_log_loss_(y_true, y_pred, m))
