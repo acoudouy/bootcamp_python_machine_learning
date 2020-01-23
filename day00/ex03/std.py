@@ -17,7 +17,7 @@ def variance(x):
     if isinstance(x, np.ndarray) == 1:
         for i, el in enumerate(x):
             res += (el - mean(x)) ** 2
-        res = res / (i + 1)
+        res = res / len(x)
         return (math.sqrt(res))
     else:
         print("x is not a np.ndarray")
