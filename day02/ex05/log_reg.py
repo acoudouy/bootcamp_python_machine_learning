@@ -48,7 +48,7 @@ class LogisticRegressionBatchGd:
         self.max_iter = max_iter
         self.verbose = verbose
         self.learning_rate = learning_rate # can be 'constant' or 'invscaling'
-        self.theta = np.full(82, 1)  # compare a avant theta a des lignes et colonnes
+        self.theta = np.full(82, 0)  # compare a avant theta a des lignes et colonnes
         self.loss_list = []
         self.list_theta = []
 
@@ -81,7 +81,7 @@ class LogisticRegressionBatchGd:
                         self.loss_list.append(loss)
                         if i % 150  == 0:
                             print("epoch " + str(i) + " : loss " + str(loss))
-                        
+             #           print(str(self.theta[0]) + "epoch " + str(i) )
                     return (self.theta)
                 else:
                     print("fit: alpha is not a float or n_cycle not an int")
@@ -107,7 +107,7 @@ df_test = pd.read_csv('../resources/test_dataset_clean.csv', delimiter=',', head
 x_test, y_test = np.array(df_test.iloc[:, 1:82]), np.array(df_test.iloc[:, 0])
 
 # We set our model with our hyperparameters : alpha, max_iter, verbose and learning_rate
-model = LogisticRegressionBatchGd(alpha=0.01, max_iter=1500, verbose=True, learning_rate='constant')
+model = LogisticRegressionBatchGd(alpha=0.01, max_iter=1499, verbose=True, learning_rate='constant')
 
 # We fit our model to our dataset and display the score for the train and test datasets
 model.fit(x_train, y_train) # mise a jour des theta
