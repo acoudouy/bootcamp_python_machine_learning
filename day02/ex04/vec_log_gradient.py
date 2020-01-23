@@ -4,9 +4,6 @@ from sigmoid import sigmoid_
 def vec_log_gradient_(x,y_true, y_pred):
     if isinstance(x, np.ndarray) == 1 and isinstance(y_true, np.ndarray) == 1 and isinstance(y_pred, np.ndarray) == 1:
         res = np.dot((y_pred - y_true), x)
-        print(y_pred)
-        print(y_true)
-        print(x)
         return (res)
     elif isinstance(x, np.ndarray) == 1 and isinstance(y_true, (int, float)) == 1 and isinstance(y_pred, (int, float)) == 1:
         
