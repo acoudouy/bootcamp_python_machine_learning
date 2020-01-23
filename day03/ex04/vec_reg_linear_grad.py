@@ -9,7 +9,8 @@ def vec_reg_linear_grad(x, y, theta, lambda_):
                 if len(x[0]) == len(theta):
                     res = np.zeros(len(x[0]))
                     res = np.dot(x.T, (x.dot(theta) - y)) / len(x) + np.dot(lambda_/len(x), theta) ###
-                    res[0] = sum((x.dot(theta) - y) * (x[:,0])) / len(x) ###
+                    temp = np.dot(x.T, (x.dot(theta) - y)) / len(x) ###
+                    res[0] = temp[0]
                     return (res)
                 else:
                     print("vec_reg_lin_grad: x's columns is not equel to theta's lines")
