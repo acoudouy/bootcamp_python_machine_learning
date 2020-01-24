@@ -30,7 +30,3 @@ def information_gain(array_source, array_children_list, criterion='gini'):
     else:
         print("info_gain: error in type of array")
 
-a = np.array([0.,1.,1.,1.,1.,1.,1.,1.,1.,1.])
-b = np.array([1.,1.,1.,1.,1.,1.,1.,1.,1.,1.])
-print(information_gain(a,b))
-print(information_gain(a,b, criterion='entropy'))
