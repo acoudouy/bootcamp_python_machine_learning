@@ -2,7 +2,14 @@ import numpy as np
 from entropy import entropy
 from gini import gini
 from node import Node
+from information_gain import information_gain
 
+
+#class Node:
+#    def __init__(self, data=None, labels=None,
+#                 is_leaf=False, split_feature=None, split_kind=None, split_criteria=None,
+#                 left=None, right=None,
+#                 depth=0):
 
 class DecisionTreeClassifier:
     def __init__(self, criterion='gini', max_depth=10):
@@ -12,6 +19,8 @@ class DecisionTreeClassifier:
     stops splitting a node if node.depth >= max_depth)
     """
         self.root = None # Root node of the tree
+        self.criterion = criterion
+        self.max_depth = max_depth
 
     def fit(self, X, y):
     """
@@ -22,3 +31,4 @@ class DecisionTreeClassifier:
     :param pandas.Dataframe y: Labels (m x 1)
     :return object self: Trained tree
     """
+

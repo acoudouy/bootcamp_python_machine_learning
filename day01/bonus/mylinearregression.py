@@ -107,3 +107,31 @@ class MyLinearRegression():
                 print("normal equation: X and Y do not have the same size")
         else:
             print("normal equation: X and Y are not np.ndarray")
+
+    def rmse_(self, Y, Y_hat):
+        """Calculate the RMSE between the predicted output and the real output."""
+        if isinstance(Y_hat, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
+            return (self.mse_(Y, Y_hat) ** 0.5)
+        else:
+            print("rmse: Y_hat or Y not nd.ndarray")
+
+    def r2score_(self, Y, Y_pred):
+        """ Calculate the R2score between the predicted output and the output. """
+        if isinstance(Y_pred, np.ndarray) == 1 and isinstance(Y, np.ndarray) == 1:
+            if len(Y_pred) == len(Y):
+                sum_pred =  0.0
+                sum_mean = 0.0
+                mean_real_val = np.mean(Y)
+                for i in range (len(Y)):
+                    sum_pred += (Y[i] - Y_pred[i]) ** 2
+                    sum_mean += (Y[i] - mean_real_val) ** 2
+                return (float(1 - (sum_pred / sum_mean)))
+            else:
+                print("r2score: X and Y do not have the same amount of examples")
+        else:
+            print("r2score: X or Y not nd.ndarray")
+
+
+
+
+
