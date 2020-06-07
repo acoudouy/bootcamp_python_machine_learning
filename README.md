@@ -16,7 +16,7 @@
 **See the L2 regularization and a few ways to process your data in order to improve significantly the performance of your models!**
 > Regularization, regularized linear regression, regularized logistic regression, Z-score standardization, min-max standardization, polynomial features, interaction terms.
 
-### Day04 - Decision Tree :deciduous_tree:
+### Day04 - Decision Tree :deciduous_tree: (not finished)
 **Be able to use Decision Trees algorithms wisely in the future**
 > Gini impurity, entropy, information gain and decision trees.
 
