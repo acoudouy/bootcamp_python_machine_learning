@@ -1,27 +1,23 @@
 # bootcamp_python_machine_learning by [42AI](42ai.fr) (jan 2020)
 
-### Day00 - Stepping Into Machine Learning
-**Get started with some linear algebra and statistics**
-> Sum, mean, variance, standard deviation, vectors and matrices operations.  
-Hypothesis, model, regression, cost function. 
+### Day00 - Mathematical Delights
+**Understand useful mathematical functions and formulas**
+> Sum, mean, variance, standard deviation, vectors and matrices operations.
 
-### Day01 - Univariate Linear Regression
-**Implement a method to improve your model's performance: **gradient descent**, and discover the notion of normalization**
-> Gradient descent, linear regression, normalization.
+### Day01 - Linear Regression
+**Get started with the first concepts constituting the field of Machine Learning**
+> Matrix operations, gradient descent, cost function, normal equation, MSE, RMSE R-score and learning rate.
 
-### Day02 - Multivariate Linear Regression
-**Extend the linear regression to handle more than one features, build polynomial models and detect overfitting**
-> Multivariate linear hypothesis, multivariate linear gradient descent, polynomial models.  
-Training and test sets, overfitting.
+### Day02 - Logistic Regression
+**Implement a Logistic Regression class using a Gradient Descent algorithm**
+> Sigmoid, log loss, gradient descent, logistic regression, model evaluation, confusion matrix.
 
-### Day03 - Logistic Regression
-**Discover your first classification algorithm: logistic regression!**
-> Logistic hypothesis, logistic gradient descent, logistic regression, multiclass classification.  
-Accuracy, precision, recall, F1-score, confusion matrix.
+### Day03 - Feature Engineering and Regularization
+**See the L2 regularization and a few ways to process your data in order to improve significantly the performance of your models!**
+> Regularization, regularized linear regression, regularized logistic regression, Z-score standardization, min-max standardization, polynomial features, interaction terms.
 
-### Day04 - Regularization
-**Fight overfitting!**
-> Regularization, overfitting. Regularized cost function, regularized gradient descent.  
-Regularized linear regression. Regularized logistic regression.
+### Day04 - Decision Tree :deciduous_tree:
+**Be able to use Decision Trees algorithms wisely in the future**
+> Gini impurity, entropy, information gain and decision trees.
 
 More info [here](https://github.com/42-AI/bootcamp_machine-learning). Many thanks to 42AI.
